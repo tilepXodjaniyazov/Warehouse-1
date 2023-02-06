@@ -37,4 +37,16 @@ public class MeasurementService {
         return new Result("delete Measurement",true);
     }
 
+    public Result updataMeasurementService(Integer id,Measurement measurement) {
+        Optional<Measurement> byId = measurementRepository.findById(id);
+        if (byId.isPresent()) {
+            Measurement measurement1 = byId.get();
+            measurement1.setName(measurement.getName());
+            measurement1.setActive(measurement.getActive());
+            measurementRepository.save(measurement1);
+            return new Result("ozgardi Measurement",true);
+        }
+        return new Result("bunday Measurement topilmadi",false);
+    }
+
 }

@@ -35,6 +35,10 @@ public class MeasurementController {
         Result result = measurementServis.deleteMeasurementService(id);
         return result;
     }
+    @PutMapping("/{id}")
+    public Result updataMeasurement(@PathVariable String id,@RequestBody Measurement measurement) {
+
+    }
 
 
 }
