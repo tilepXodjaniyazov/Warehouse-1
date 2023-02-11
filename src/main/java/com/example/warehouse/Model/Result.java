@@ -10,4 +10,10 @@ import lombok.NoArgsConstructor;
 public class Result {
     private String massage;
     private Boolean success;
+    private Object object;
+
+    public Result(String massage, Boolean success) {
+        this.massage = massage;
+        this.success = success;
+    }
 }

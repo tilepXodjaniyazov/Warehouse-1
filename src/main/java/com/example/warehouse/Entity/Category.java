@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Category extends AbsEntity {
+public class  Category extends AbsEntity {
     @ManyToOne
     private Category parentCategory;
 }

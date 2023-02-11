@@ -2,6 +2,7 @@ package com.example.warehouse.controller;
 
 import com.example.warehouse.Entity.Measurement;
 import com.example.warehouse.Model.Result;
+import com.example.warehouse.Repository.MeasurementRepository;
 import com.example.warehouse.Servis.MeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import java.util.List;
 public class MeasurementController {
     @Autowired
     MeasurementService measurementServis;
+    @Autowired
+    private MeasurementRepository measurementRepository;
+
     @PostMapping
     public Result addMeasurementController(@RequestBody Measurement measurement) {
         Result result = measurementServis.addMeasurementService(measurement);
@@ -36,8 +40,9 @@ public class MeasurementController {
         return result;
     }
     @PutMapping("/{id}")
-    public Result updataMeasurement(@PathVariable String id,@RequestBody Measurement measurement) {
-
+    public Result updataMeasurement(@PathVariable Integer id,@RequestBody Measurement measurement) {
+        Result result = measurementServis.updataMeasurementService(id, measurement);
+        return result;
     }
 
 
