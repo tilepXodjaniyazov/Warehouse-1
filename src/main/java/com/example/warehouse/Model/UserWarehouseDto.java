@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrencyDto {
-    private String name;
-    private Boolean active;
+public class UserWarehouseDto {
+    private Integer userId;
+    private Integer warehouseId;
 }

@@ -3,13 +3,12 @@ package com.example.warehouse.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Output {
+public class OutputDto {
     private Date date;
     private Integer warehouseId;
     private Integer currencyId;

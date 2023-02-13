@@ -37,7 +37,7 @@ public class MeasurementService {
         return new Result("delete Measurement",true);
     }
 
-    public Result updataMeasurementService(Integer id,Measurement measurement) {
+    public Result updataMeasurementService(Integer id, Measurement measurement) {
         Optional<Measurement> byId = measurementRepository.findById(id);
         if (byId.isPresent()) {
             Measurement measurement1 = byId.get();

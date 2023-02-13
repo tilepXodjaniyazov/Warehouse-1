@@ -40,7 +40,7 @@ public class MeasurementController {
         return result;
     }
     @PutMapping("/{id}")
-    public Result updataMeasurement(@PathVariable Integer id,@RequestBody Measurement measurement) {
+    public Result updataMeasurement(@PathVariable Integer id, @RequestBody Measurement measurement) {
         Result result = measurementServis.updataMeasurementService(id, measurement);
         return result;
     }

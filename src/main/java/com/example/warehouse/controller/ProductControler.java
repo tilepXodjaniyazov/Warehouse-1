@@ -19,7 +19,7 @@ public class ProductControler {
         return productServis.postProduct(productDto);
     }
     @PutMapping("/{id}")
-    public Result putProduct(@PathVariable Integer id,@RequestBody ProductDto productDto) {
+    public Result putProduct(@PathVariable Integer id, @RequestBody ProductDto productDto) {
         return productServis.putProduct(id,productDto);
     }
     @DeleteMapping("/{id}")
