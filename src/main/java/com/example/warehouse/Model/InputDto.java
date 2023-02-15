@@ -10,7 +10,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InputDto {
-    private Date date;
     private Integer warehouseId;
     private Integer supplierId;
     private Integer currencyId;

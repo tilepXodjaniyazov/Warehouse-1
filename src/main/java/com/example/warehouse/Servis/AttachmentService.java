@@ -4,6 +4,7 @@ import com.example.warehouse.Entity.Attachment;
 import com.example.warehouse.Entity.AttachmentContent;
 import com.example.warehouse.Model.Result;
 import com.example.warehouse.Repository.AttachmentRepository;
+import com.example.warehouse.Repository.WarehouseRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class AttachmentService {
     @Autowired
     AttachmentRepository attachmentRepository;
     @Autowired
-    AttachmentContentRepository attachmentContentRepository;
+    WarehouseRepository.AttachmentContentRepository attachmentContentRepository;
     @SneakyThrows
     public Result uploadFile(MultipartHttpServletRequest     request) throws IOException {
         Iterator<String> fileNames = request.getFileNames();

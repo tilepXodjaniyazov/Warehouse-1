@@ -9,7 +9,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutputDto {
-    private Date date;
     private Integer warehouseId;
     private Integer currencyId;
     private String factureNumber;
