@@ -3,6 +3,7 @@ package com.example.warehouse.Servis;
 import com.example.warehouse.Entity.Attachment;
 import com.example.warehouse.Entity.AttachmentContent;
 import com.example.warehouse.Model.Result;
+import com.example.warehouse.Repository.AttachmentContentRepository;
 import com.example.warehouse.Repository.AttachmentRepository;
 import com.example.warehouse.Repository.WarehouseRepository;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,22 +24,22 @@ public class AttachmentService {
     @Autowired
     AttachmentRepository attachmentRepository;
     @Autowired
-    WarehouseRepository.AttachmentContentRepository attachmentContentRepository;
+    AttachmentContentRepository attachmentContentRepository;
+
     @SneakyThrows
-    public Result uploadFile(MultipartHttpServletRequest     request) throws IOException {
+    public Result uploadFile(MultipartHttpServletRequest request) throws IOException {
         Iterator<String> fileNames = request.getFileNames();
         MultipartFile file = request.getFile(fileNames.next());
         String originalFilename = null;
-        if (file == null) {return null;}
         if (file != null) {
             originalFilename = file.getOriginalFilename();
             long size = file.getSize();
             String contentType = file.getContentType();
             Attachment saveAttachment = attachmentRepository.save(new Attachment(null, originalFilename, size, contentType));
-            attachmentContentRepository.save(new AttachmentContent(null,file.getBytes(),saveAttachment));
-            return new Result("attachment qoshildi", true,saveAttachment.getId());
+            attachmentContentRepository.save(new AttachmentContent(null, file.getBytes(), saveAttachment));
+            return new Result("attachment qoshildi", true, saveAttachment.getId());
         }
-        return new Result("faile qoshilmadi!!",false);
+        return new Result("faile qoshilmadi!!", false);
     }
 
 
@@ -46,13 +47,11 @@ public class AttachmentService {
         Optional<Attachment> byId = attachmentRepository.findById(id);
         if (byId.isPresent()) {
             Attachment attachment = byId.get();
-            Optional<AttachmentContent> allByAttachmentId = attachmentContentRepository.findAllByAttachmentId(id);
-            if (allByAttachmentId.isPresent()) {
-                AttachmentContent attachmentContent = allByAttachmentId.get();
-                response.setHeader("Content-Disposition", "attachment; filename = \"" + attachment.getName() + "\"");
-                response.setContentType(attachment.getContent_type());
-                FileCopyUtils.copy(attachmentContent.getBytes(), response.getOutputStream());
-            }
+            AttachmentContent attachmentContent = attachmentContentRepository.findAttachmentContentByAttachmentId(id);
+            response.setHeader("Content-Disposition", "attachment; filename = \"" + attachment.getName() + "\"");
+            response.setContentType(attachment.getContent_type());
+            FileCopyUtils.copy(attachmentContent.getBytes(), response.getOutputStream());
+
         }
     }
 

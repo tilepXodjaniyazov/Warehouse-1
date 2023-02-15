@@ -6,6 +6,7 @@ import com.example.warehouse.Entity.Product;
 import com.example.warehouse.Model.OutputProductDto;
 import com.example.warehouse.Model.Result;
 import com.example.warehouse.Repository.OutputProductRepository;
+import com.example.warehouse.Repository.OutputRepository;
 import com.example.warehouse.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

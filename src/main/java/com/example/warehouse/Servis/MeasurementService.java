@@ -13,13 +13,13 @@ import java.util.Optional;
 public class MeasurementService {
     @Autowired
     MeasurementRepository measurementRepository;
+
     public Result addMeasurementService(Measurement measurement) {
         boolean existsByName = measurementRepository.existsByName(measurement.getName());
         if (existsByName)
-            return new Result("Bunday olchov birligi mavjud",false);
-         measurementRepository.save(measurement);
-         return new Result("Measurement qoshildi",true);
-
+            return new Result("Bunday olchov birligi mavjud", false);
+        measurementRepository.save(measurement);
+        return new Result("Measurement qoshildi", true);
     }
 
     public List<Measurement> getMeasurementAllService() {
@@ -34,19 +34,21 @@ public class MeasurementService {
 
     public Result deleteMeasurementService(Integer id) {
         measurementRepository.deleteById(id);
-        return new Result("delete Measurement",true);
+        return new Result("delete Measurement", true);
     }
 
     public Result updataMeasurementService(Integer id, Measurement measurement) {
         Optional<Measurement> byId = measurementRepository.findById(id);
         if (byId.isPresent()) {
             Measurement measurement1 = byId.get();
-            measurement1.setName(measurement.getName());
-            measurement1.setActive(measurement.getActive());
+            if (measurement.getName().length() != 0) {
+                measurement1.setName(measurement.getName());
+            }
+                measurement1.setActive(measurement.getActive());
             measurementRepository.save(measurement1);
-            return new Result("ozgardi Measurement",true);
+            return new Result("ozgardi Measurement", true);
         }
-        return new Result("bunday Measurement topilmadi",false);
+        return new Result("bunday Measurement topilmadi", false);
     }
 
 }
