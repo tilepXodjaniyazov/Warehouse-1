@@ -13,6 +13,7 @@ import java.util.Optional;
 public class MeasurementService {
     @Autowired
     MeasurementRepository measurementRepository;
+    //Bunda Measurement Entity ni ozini ishlatip ketim
 
     public Result addMeasurementService(Measurement measurement) {
         boolean existsByName = measurementRepository.existsByName(measurement.getName());
